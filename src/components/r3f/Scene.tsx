@@ -1,5 +1,6 @@
 'use client'
 
+import { Component, type ReactNode } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { ScrollControls, Scroll } from '@react-three/drei'
 import { EffectComposer, Bloom, ChromaticAberration, Vignette } from '@react-three/postprocessing'
@@ -12,6 +13,21 @@ import SectionTitle from '../ui/SectionTitle'
 import ProductCard from '../ui/ProductCard'
 import ContactForm from '../ui/ContactForm'
 import Footer from '../ui/Footer'
+
+// Error boundary that renders nothing on failure (safe for R3F tree)
+class R3FErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: ReactNode }) {
+    super(props)
+    this.state = { hasError: false }
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+  render() {
+    if (this.state.hasError) return null
+    return this.props.children
+  }
+}
 
 function PostProcessing() {
   const isMobile = useGlobalStore((s) => s.isMobile)
@@ -116,7 +132,9 @@ export default function Scene() {
         <SceneManager />
         <ScrollContent />
       </ScrollControls>
-      <PostProcessing />
+      <R3FErrorBoundary>
+        <PostProcessing />
+      </R3FErrorBoundary>
     </Canvas>
   )
 }

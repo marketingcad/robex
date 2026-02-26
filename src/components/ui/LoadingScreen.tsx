@@ -20,6 +20,15 @@ export default function LoadingScreen() {
     }
   }, [progress, active, setIsLoading])
 
+  // Fallback: dismiss after 5 seconds regardless of loading state
+  useEffect(() => {
+    const fallback = setTimeout(() => {
+      setShow(false)
+      setIsLoading(false)
+    }, 5000)
+    return () => clearTimeout(fallback)
+  }, [setIsLoading])
+
   return (
     <AnimatePresence>
       {show && (
