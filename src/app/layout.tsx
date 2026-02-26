@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: 'Robex Solutions | Precision in Motion',
   description:
     'Advanced manufacturing solutions for industrial automation. Laser cutters, automated presses, robotic welders, and vision systems.',
+  icons: {
+    icon: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({
