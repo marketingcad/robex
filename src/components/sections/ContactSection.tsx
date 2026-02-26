@@ -1,23 +1,15 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import ContactForm from '../ui/ContactForm'
 import Footer from '../ui/Footer'
 import BeamsBackground from '../ui/BeamsBackground'
 
-const LaserModelViewer = dynamic(() => import('../ui/LaserModelViewer'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full aspect-square rounded-xl bg-bg-light/20 animate-pulse" />
-  ),
-})
-
 export default function ContactSection() {
   return (
     <section id="contact">
       <BeamsBackground className="py-24 md:py-32">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="max-w-5xl mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -36,24 +28,8 @@ export default function ContactSection() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <LaserModelViewer />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <ContactForm />
-            </motion.div>
+          <div className="max-w-xl mx-auto">
+            <ContactForm />
           </div>
 
           <div className="mt-16">

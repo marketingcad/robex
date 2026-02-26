@@ -26,7 +26,7 @@ function LoadingPlaceholder() {
 
 export default function LaserModelViewer() {
   return (
-    <div className="w-full aspect-square rounded-xl overflow-hidden border border-border-color/30">
+    <div className="w-full aspect-[4/3] rounded-xl overflow-hidden border border-border-color/30">
       <Canvas
         camera={{ position: [3, 2, 3], fov: 50, near: 0.1, far: 100 }}
         style={{ background: 'transparent' }}
