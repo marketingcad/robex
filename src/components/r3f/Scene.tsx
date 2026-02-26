@@ -77,7 +77,7 @@ export default function Scene() {
       camera={{ position: [0, 0, 5], fov: 35 }}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
       dpr={[1, 2]}
-      style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }}
+      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
       onCreated={(state) => {
         // Safeguard: ensure the Canvas container is never hidden by extensions or browser filters
         const container = state.gl.domElement.parentElement?.parentElement
