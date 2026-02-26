@@ -30,11 +30,29 @@ export default function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <p className="font-body text-lg text-text-secondary leading-relaxed mb-6">
-              Robex Solutions was built on a single, defining conviction: that the
-              manufacturers who power China&apos;s industrial economy deserve more than
-              a machine. They deserve a partner.
-            </p>
+            <motion.blockquote
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="relative pl-6 mb-8 border-l-4 border-accent-blue"
+            >
+              <p className="font-heading text-xl md:text-2xl text-text-primary leading-relaxed font-medium">
+                Robex Solutions was built on a single, defining conviction: that the
+                manufacturers who power China&apos;s industrial economy deserve more than
+                a machine.{' '}
+                <motion.span
+                  initial={{ backgroundSize: '0% 100%' }}
+                  whileInView={{ backgroundSize: '100% 100%' }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, delay: 0.8, ease: 'easeOut' }}
+                  className="bg-gradient-to-r from-accent-blue/20 to-accent-blue/10 bg-no-repeat bg-left-bottom"
+                  style={{ backgroundPosition: '0 85%', paddingBottom: '2px' }}
+                >
+                  They deserve a partner.
+                </motion.span>
+              </p>
+            </motion.blockquote>
             <p className="font-body text-base text-text-secondary/80 leading-relaxed mb-6">
               Founded by veteran engineers and industrial specialists, we deliver
               high-performance CNC machinery backed by deep application expertise

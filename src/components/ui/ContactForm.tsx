@@ -2,7 +2,6 @@
 
 import { useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import { CONTACT } from '@/lib/constants'
 import { trackFormSubmission } from '@/lib/analytics'
 
 export default function ContactForm() {
@@ -70,17 +69,6 @@ export default function ContactForm() {
           Submit Inquiry
         </button>
       </form>
-
-      <div className="flex flex-wrap gap-6 pt-2 text-sm">
-        <div>
-          <span className="font-heading text-text-primary">Email: </span>
-          <span className="font-body text-text-secondary">{CONTACT.email}</span>
-        </div>
-        <div>
-          <span className="font-heading text-text-primary">Phone: </span>
-          <span className="font-body text-text-secondary">{CONTACT.phone}</span>
-        </div>
-      </div>
     </div>
   )
 }
