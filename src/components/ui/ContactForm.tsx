@@ -56,15 +56,8 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <motion.form
-        onSubmit={handleSubmit}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="space-y-4"
-      >
+    <div className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <Field name="name" label="Full Name" error={errors.name} />
         <Field name="company" label="Company Name" error={errors.company} />
         <Field name="email" label="Work Email" type="email" error={errors.email} />
@@ -76,28 +69,18 @@ export default function ContactForm() {
         >
           Submit Inquiry
         </button>
-      </motion.form>
+      </form>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="space-y-6"
-      >
+      <div className="flex flex-wrap gap-6 pt-2 text-sm">
         <div>
-          <h4 className="font-heading text-body text-text-primary mb-1">Email</h4>
-          <p className="font-body text-small text-text-secondary">{CONTACT.email}</p>
+          <span className="font-heading text-text-primary">Email: </span>
+          <span className="font-body text-text-secondary">{CONTACT.email}</span>
         </div>
         <div>
-          <h4 className="font-heading text-body text-text-primary mb-1">Phone</h4>
-          <p className="font-body text-small text-text-secondary">{CONTACT.phone}</p>
+          <span className="font-heading text-text-primary">Phone: </span>
+          <span className="font-body text-text-secondary">{CONTACT.phone}</span>
         </div>
-        <div>
-          <h4 className="font-heading text-body text-text-primary mb-1">Address</h4>
-          <p className="font-body text-small text-text-secondary">{CONTACT.address}</p>
-        </div>
-      </motion.div>
+      </div>
     </div>
   )
 }
