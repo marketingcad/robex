@@ -1,11 +1,11 @@
 export interface Product {
   id: string
   name: string
+  category: string
   tagline: string
   description: string
-  primitiveType: 'octahedron' | 'dodecahedron' | 'sphere' | 'icosahedron'
-  position: [number, number, number]
-  color: string
+  keySpec: string
+  image: string
 }
 
 export interface SectionRange {
@@ -21,5 +21,4 @@ export interface CameraKeyframe {
 export interface StatItem {
   value: string
   label: string
-  position: [number, number, number]
 }

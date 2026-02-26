@@ -15,11 +15,18 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Robex Solutions | Precision in Motion',
+  title: 'Robex Solutions | High-Performance CNC Machinery for Manufacturing',
   description:
-    'Advanced manufacturing solutions for industrial automation. Laser cutters, automated presses, robotic welders, and vision systems.',
+    'Robex Solutions provides advanced CNC machining centers, turning centers, and 5-axis machines for China\'s manufacturing sector. Precision engineering, lifecycle support, and a dedicated partnership to elevate your production.',
   icons: {
     icon: '/favicon.svg',
+  },
+  openGraph: {
+    title: 'Robex Solutions: Engineering Precision for Modern Manufacturing',
+    description:
+      'Discover high-performance CNC machinery and automation solutions designed to give China\'s leading manufacturers a decisive competitive edge.',
+    type: 'website',
+    images: [{ url: '/images/hero-main.png', alt: 'Robex Solutions manufacturing floor with CNC machines' }],
   },
 }
 
