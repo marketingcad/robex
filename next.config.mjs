@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  transpilePackages: ['three', '@react-three/drei'],
+  transpilePackages: ['three', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   typescript: {
     // Type checking is too slow on SMB mount; Vercel will type-check on deploy
     ignoreBuildErrors: true,

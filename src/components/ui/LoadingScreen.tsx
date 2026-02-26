@@ -8,7 +8,13 @@ import { useGlobalStore } from '@/stores/useGlobalStore'
 export default function LoadingScreen() {
   const { progress, active } = useProgress()
   const setIsLoading = useGlobalStore((s) => s.setIsLoading)
+  const [mounted, setMounted] = useState(false)
   const [show, setShow] = useState(true)
+
+  // Only render after client-side mount to avoid SSR mismatch with Framer Motion
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     if (progress === 100 && !active) {
@@ -28,6 +34,8 @@ export default function LoadingScreen() {
     }, 5000)
     return () => clearTimeout(fallback)
   }, [setIsLoading])
+
+  if (!mounted) return null
 
   return (
     <AnimatePresence>

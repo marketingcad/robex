@@ -67,11 +67,11 @@ function ProductPrimitive({ product }: { product: Product }) {
         onPointerOver={(e) => {
           e.stopPropagation()
           setHovered(true)
-          document.body.style.cursor = 'grab'
+          if (typeof document !== 'undefined') document.body.style.cursor = 'grab'
         }}
         onPointerOut={() => {
           setHovered(false)
-          document.body.style.cursor = 'auto'
+          if (typeof document !== 'undefined') document.body.style.cursor = 'auto'
         }}
         onClick={(e) => {
           e.stopPropagation()
@@ -144,11 +144,11 @@ function SphereWithRings({ product }: { product: Product }) {
         onPointerOver={(e) => {
           e.stopPropagation()
           setHovered(true)
-          document.body.style.cursor = 'grab'
+          if (typeof document !== 'undefined') document.body.style.cursor = 'grab'
         }}
         onPointerOut={() => {
           setHovered(false)
-          document.body.style.cursor = 'auto'
+          if (typeof document !== 'undefined') document.body.style.cursor = 'auto'
         }}
         onClick={(e) => {
           e.stopPropagation()

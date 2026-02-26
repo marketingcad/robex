@@ -1,61 +1,13 @@
 'use client'
 
-import { Component, type ReactNode } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { ScrollControls, Scroll } from '@react-three/drei'
-import { EffectComposer, Bloom, ChromaticAberration, Vignette } from '@react-three/postprocessing'
-import { BlendFunction } from 'postprocessing'
-import { Vector2 } from 'three'
 import SceneManager from './SceneManager'
-import { useGlobalStore } from '@/stores/useGlobalStore'
-import { POST_PROCESSING, PRODUCTS } from '@/lib/constants'
+import { PRODUCTS } from '@/lib/constants'
 import SectionTitle from '../ui/SectionTitle'
 import ProductCard from '../ui/ProductCard'
 import ContactForm from '../ui/ContactForm'
 import Footer from '../ui/Footer'
-
-// Error boundary that renders nothing on failure (safe for R3F tree)
-class R3FErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
-  constructor(props: { children: ReactNode }) {
-    super(props)
-    this.state = { hasError: false }
-  }
-  static getDerivedStateFromError() {
-    return { hasError: true }
-  }
-  render() {
-    if (this.state.hasError) return null
-    return this.props.children
-  }
-}
-
-function PostProcessing() {
-  const isMobile = useGlobalStore((s) => s.isMobile)
-
-  if (isMobile) return null
-
-  return (
-    <EffectComposer multisampling={0}>
-      <Bloom
-        intensity={POST_PROCESSING.bloom.intensity}
-        luminanceThreshold={POST_PROCESSING.bloom.luminanceThreshold}
-        luminanceSmoothing={POST_PROCESSING.bloom.luminanceSmoothing}
-        mipmapBlur
-      />
-      <ChromaticAberration
-        blendFunction={BlendFunction.NORMAL}
-        offset={new Vector2(...POST_PROCESSING.chromaticAberration.offset)}
-        radialModulation={false}
-        modulationOffset={0}
-      />
-      <Vignette
-        offset={POST_PROCESSING.vignette.offset}
-        darkness={POST_PROCESSING.vignette.darkness}
-        blendFunction={BlendFunction.NORMAL}
-      />
-    </EffectComposer>
-  )
-}
 
 function ScrollContent() {
   return (
@@ -126,15 +78,16 @@ export default function Scene() {
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
       dpr={[1, 2]}
       style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }}
-      aria-hidden="true"
+      onCreated={(state) => {
+        // Safeguard: ensure the Canvas container is never hidden by extensions or browser filters
+        const container = state.gl.domElement.parentElement?.parentElement
+        if (container) container.style.setProperty('display', 'block', 'important')
+      }}
     >
       <ScrollControls pages={4} damping={0.25}>
         <SceneManager />
         <ScrollContent />
       </ScrollControls>
-      <R3FErrorBoundary>
-        <PostProcessing />
-      </R3FErrorBoundary>
     </Canvas>
   )
 }
