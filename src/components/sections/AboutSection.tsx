@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { STATS } from '@/lib/constants'
 
-const LaserModelViewer = dynamic(() => import('../ui/LaserModelViewer'), {
+const ModelViewer = dynamic(() => import('../ui/ModelViewer'), {
   ssr: false,
   loading: () => (
     <div className="w-full aspect-[4/3] rounded-xl bg-bg-light/20 animate-pulse" />
@@ -120,7 +120,7 @@ export default function AboutSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mt-20 max-w-2xl mx-auto"
         >
-          <LaserModelViewer />
+          <ModelViewer />
         </motion.div>
 
         {/* Value propositions */}
