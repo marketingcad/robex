@@ -28,7 +28,7 @@ export default function ModelViewer() {
   return (
     <div className="w-full aspect-[4/3] rounded-xl overflow-hidden border border-border-color/30">
       <Canvas
-        camera={{ position: [3, 2, 3], fov: 50, near: 0.1, far: 100 }}
+        camera={{ position: [2, 1.4, 2], fov: 45, near: 0.1, far: 100 }}
         style={{ background: 'transparent' }}
         gl={{ antialias: true, alpha: true }}
       >
